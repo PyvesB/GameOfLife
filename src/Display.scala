@@ -30,8 +30,8 @@ class Display(N: Int, a: Array[Array[Boolean]]) extends Frame {
 
   class Board extends Component {
     // Define colours.
-    val backgroundColor = Color.gray.brighter
-    val blockColor = Color.black
+    private val backgroundColor = Color.gray.brighter
+    private val blockColor = Color.black
 
     // Paint the square at (x,y) in colour c.
     private def paintAt(x: Int, y: Int, c: Color) = {

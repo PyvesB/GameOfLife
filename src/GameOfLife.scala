@@ -8,9 +8,9 @@ import java.util.concurrent.CyclicBarrier
  */
 class GameOfLife(gridWidth: Int, nbThreads: Int) {
 
-  val grid = Array.ofDim[Boolean](gridWidth, gridWidth) // Grid of Game of Life.
-  val barrier = new CyclicBarrier(nbThreads + 1) // Used to synchronise threads.
-  val display = new Display(gridWidth, grid) // Used to display the grid.
+  private val grid = Array.ofDim[Boolean](gridWidth, gridWidth) // Grid of Game of Life.
+  private val barrier = new CyclicBarrier(nbThreads + 1) // Used to synchronise threads.
+  private val display = new Display(gridWidth, grid) // Used to display the grid.
 
   def main(args: Array[String]) {
     // Initialise grid. Put in your own initial parameters here.
