@@ -1,5 +1,8 @@
 import java.util.concurrent.CyclicBarrier
 
+// Modify size of grid or number of parallel threads here. Grid width must me a multiple of the number of threads.
+object Life extends GameOfLife(32, 4) 
+
 /**
  * A simple concurrent implementation of Conway's Game of Life, written in Scala and using a toroidal grid.
  *
@@ -11,14 +14,14 @@ class GameOfLife(gridWidth: Int, nbThreads: Int) {
   private val grid = Array.ofDim[Boolean](gridWidth, gridWidth) // Grid of Game of Life.
   private val barrier = new CyclicBarrier(nbThreads + 1) // Used to synchronise threads.
   private val display = new Display(gridWidth, grid) // Used to display the grid.
+  private val rand = new scala.util.Random // Used to initialise the grid.
 
   def main(args: Array[String]) {
-    // Initialise grid. Put in your own initial parameters here.
-    for (l <- 9 to 11) grid(14)(l) = true
-    for (l <- 10 to 23) grid(14)(l) = true
-    for (l <- 9 to 11) grid(18)(l) = true
-    for (l <- 10 to 23) grid(18)(l) = true
-
+    // Initialise grid with random values.
+    for (i <- 0 to gridWidth - 1)
+      for (j <- 0 to gridWidth - 1)
+        grid(i)(j) = rand.nextBoolean()
+    
     // Launch parallel workers to process grid.
     for (p <- 0 to nbThreads - 1)
       new Thread(new Runnable {
@@ -99,6 +102,3 @@ class GameOfLife(gridWidth: Int, nbThreads: Int) {
   }
 
 }
-
-// Modify size of grid or number of parallel threads here. Grid width must me a multiple of the number of threads.
-object Test extends GameOfLife(32, 4) 
