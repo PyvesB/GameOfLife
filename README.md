@@ -7,5 +7,5 @@ scala Life
 ```
 
 <p align="center">
-<img src ="http://images.jupload.fr/1473451174.png" />
+<img src ="https://github.com/PyvesB/game-of-life/blob/master/screenshot.png?raw=true" />
 </p>
